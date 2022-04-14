@@ -14,11 +14,13 @@ Or place all arguments into a config file i.e. `parameters.txt`
 ```
 # This is how the parameters.txt look like
 
-inputDir = "path/contains/raw_reads"
-outdir = "test_out"
-amplicon_seq = "CTGACATTTCTCTTGTCTCCTCTgtgcccagggtgctggagaatccaaatgtcctctgatggtcaaagtcctggatgctgtccgaggcagccctgctgtagacgtggctgtaaaagtgttcaaaaagaccTCTGAGGGATCCTGGGAGC"
-guide_seq = "ttacagccacgtctacagca"
-crispresso_args = "--default_min_aln_score 40"
+inputDir: "/mnt/disks/geb_storage/iseq/20220407_142243/Fastq"
+outdir: "iseq_20220407_142243_aln40_singleEnd"
+amplicon_seq: "CTGACATTTCTCTTGTCTCCTCTgtgcccagggtgctggagaatccaaatgtcctctgatggtcaaagtcctggatgctgtccgaggcagccctgctgtagacgtggctgtaaaagtgttcaaaaagaccTCTGAGGGATCCTGGGAGC"
+guide_seq: "ttacagccacgtctacagca"
+crispresso_args: "--default_min_aln_score 40"
+batch: false
+single_end: true
 ```
 
 ```

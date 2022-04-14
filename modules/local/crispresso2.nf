@@ -13,6 +13,12 @@ process crispresso{
 
     script:
     def args = task.ext.args ?: ''
+
+    if (params.single_end)
+    """
+    CRISPResso --fastq_r1 ${reads} --amplicon_seq ${params.amplicon_seq} --guide_seq ${params.guide_seq} $args
+    """
+    else
     """
     CRISPResso --fastq_r1 ${reads[0]} --fastq_r2 ${reads[1]} --amplicon_seq ${params.amplicon_seq} --guide_seq ${params.guide_seq} $args
     """
@@ -20,17 +26,30 @@ process crispresso{
 
 
 process crispresso_batch{
-    tag {meta.id}
     container 'pinellolab/crispresso2'
 
+    cpus 4
+
     input:
-    tuple val(meta), path(reads)
+    path(reads)
 
     output:
     path('*'), emit: crispresso_batch_out
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
+    def args = task.ext.args ?: ''
+
+    if (params.single_end)
     """
-    CRISPRessoBatch --batch_settings ${params.batch_setting} --amplicon_seq ${params.amplicon_seq} -p 4 -g ${params.sgrna} -wc -10 -w 20
+    create_batch_config.py . true
+    CRISPRessoBatch -p 4 --batch_settings batch.batch --skip_failed --amplicon_seq ${params.amplicon_seq} --guide_seq ${params.guide_seq} $args
+    """
+    else
+    """
+    create_batch_config.py . false
+    CRISPRessoBatch -p 4 --batch_settings batch.batch --skip_failed --amplicon_seq ${params.amplicon_seq} --guide_seq ${params.guide_seq} $args
     """
 }
