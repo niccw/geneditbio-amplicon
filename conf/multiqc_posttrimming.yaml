@@ -1,0 +1,9 @@
+module_order:
+    - fastp:
+        fn: '*fastp.json'
+    - fastqc:
+        name: 'FastQC (After trimming)'
+        info: 'This section of the report shows FastQC results after adapter trimming.'
+        path_filters:
+            - '*.zip'
+  
