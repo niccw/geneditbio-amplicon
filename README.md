@@ -15,12 +15,17 @@ Or place all arguments into a config file i.e. `parameters.txt`
 # This is how the parameters.txt look like
 
 inputDir: "/mnt/disks/geb_storage/iseq/20220407_142243/Fastq"
-outdir: "iseq_20220407_142243_aln40_singleEnd"
+outdir: "iseq_20220407_142243_aln40_singleEnd_batch"
+
+single_end: false # treat paired end as single end
+
+# Crispresso settings
 amplicon_seq: "CTGACATTTCTCTTGTCTCCTCTgtgcccagggtgctggagaatccaaatgtcctctgatggtcaaagtcctggatgctgtccgaggcagccctgctgtagacgtggctgtaaaagtgttcaaaaagaccTCTGAGGGATCCTGGGAGC"
 guide_seq: "ttacagccacgtctacagca"
+# coding sequence is optional, put "" if frameshift analysis is not necessary
+coding_seq: "atggcttcccttcgactcttcctcctttgcctcgctggactggtatttgtgtctgaagctggccccgcgggtgctggagaatccaaatgtcctctgatggtcaaagtcctggatgctgtccgaggcagccctgctgtagacgtggctgtaaaagtgttcaaaaagacctctgagggatcctgggagccctttgcctctgggaagaccgcggagtctggagagctgcacgggctcaccacagatgagaagtttgtagaaggagtgtacagagtagaactggacaccaaatcgtactggaagacacttggcatttccccgttccatgaattcgcggatgtggttttcacagccaacgactctggccatcgccactacaccatcgcagccctgctcagcccatactcctacagcaccacggctgtcgtcagcaacccccagaattga"
 crispresso_args: "--default_min_aln_score 40"
-batch: false
-single_end: true
+batch: true
 ```
 
 ```
